@@ -1,4 +1,6 @@
-class VisibilityToggle extends React.Component {
+import React from 'react';
+
+class Eleanor extends React.Component {
   constructor(props) {
     super(props);
     this.toggleVisibility = this.toggleVisibility.bind(this)
@@ -40,6 +42,7 @@ class VisibilityToggle extends React.Component {
   }
 }
 
+export default Eleanor
 
-ReactDOM.render(<VisibilityToggle />, document.getElementById('app'));
+// ReactDOM.render(<Eleanor />, document.getElementById('app'));
 

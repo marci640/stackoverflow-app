@@ -16,7 +16,7 @@ class IndecisionApp extends React.Component {
       const options = JSON.parse(json);
 
       if (options) {
-        this.setState(() => ({ options }));
+        this.setState(() => ({ options: options }));
       }
     } catch (e) {
       // Do nothing at all
