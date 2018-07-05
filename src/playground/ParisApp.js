@@ -1,30 +1,28 @@
 import React from 'react';
-import GoogleMap from './GoogleMap';
+import ClinicMap from './GoogleMap';
 import MapMarkers from './MapMarkers';
 import List from './List';
 
 class ParisApp extends React.Component {
   state = {
-    places: [],
+    markers: ["hello", "goodbye"],
+    isOpen: false
   };
 
-  getList = ({ commit }) => {
-    axios.get('my-json-server.typicode.com').then((response) => {
-      commit('setPlaces', { response.data })
-    }, (err) => {
-      console.log(err)
-    })
-  },
-
-  setPlaces = (json) => {
-    this.setState(() => ({places: json }));
-  },
+  onToggleOpen = () => {
+    this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
+    console.log(this.state.isOpen);
+  };
 
   render() {
     return (
       <div>
-        <GoogleMap places={this.state.places} />
-        <List places={this.state.places}/>
+        <ClinicMap 
+          markers={this.state.markers}
+          onToggleOpen={this.onToggleOpen}
+          isOpen={this.state.isOpen}
+        />
+        <List/>
       </div>
     );
   }
