@@ -5,15 +5,15 @@ import List from './List';
 
 class ParisApp extends React.Component {
   state = {
-    words: ["hello", "goodbye"],
     isOpen: false,
-    fakeClinics: []
+    fakeClinics: [],
+    infoIndex: ""
   };
 
-  onToggleOpen = () => {
+  toggleInfo = (a) => {
     this.setState((prevState) => ({ isOpen: !prevState.isOpen }));
-    console.log(this.state.isOpen);
-  };
+    this.setState({infoIndex: a})
+  }
 
   componentDidMount() {
     fetch('http://localhost:3000/api/v1/non_clinics').then(results => {
@@ -21,7 +21,6 @@ class ParisApp extends React.Component {
     }).then(data => {
       let fakeClinics = data;
       this.setState({fakeClinics: fakeClinics});
-      console.log("state", this.state.fakeClinics);
     })
   }
 
@@ -29,11 +28,11 @@ class ParisApp extends React.Component {
     return (
       <div>
         <ClinicMap 
-          onToggleOpen={this.onToggleOpen}
           isOpen={this.state.isOpen}
           fakeClinics={this.state.fakeClinics}
+          infoIndex={this.state.infoIndex}
+          toggleInfo={this.toggleInfo}
         />
-        <List/>
       </div>
     );
   }

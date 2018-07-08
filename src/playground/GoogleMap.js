@@ -15,18 +15,18 @@ class ClinicMap extends Component {
           <Marker
             key={clinic.id}
             position= {{lat: parseFloat(clinic.lat), lng: parseFloat(clinic.long)}}
-            onClick={() => this.props.onToggleOpen()}
+            onClick={() => { this.props.toggleInfo(clinic.id) } }
           >
 
-          {this.props.isOpen && <InfoBox
-            // text={clinic.name}
-            onCloseClick={props.onToggleOpen}
-            // options={{ closeBoxURL: ``, enableEventPropagation: true }}
+          { ( this.props.isOpen && this.props.infoIndex == clinic.id ) && <InfoBox
+            
+            // onCloseClick={props.onToggleOpen}
+            options={{ closeBoxURL: ``, enableEventPropagation: true }}
           >
             <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
               <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
               </div>
-              Some text
+              {clinic.name}
             </div>
 
           </InfoBox>}
